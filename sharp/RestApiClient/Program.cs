@@ -59,7 +59,6 @@ class Program
 
     static void DisplayAsTable(List<JsonElement> items)
     {
-        // Берем ключи из первого элемента для заголовков
         var properties = items[0].EnumerateObject().Select(p => p.Name).ToList();
 
         // Рисуем простую таблицу (без обрезки!)
@@ -68,7 +67,6 @@ class Program
         {
             foreach (var prop in item.EnumerateObject())
             {
-                // Выводим Ключ: Значение (так ссылки не будут обрезаться в кашу)
                 Console.WriteLine($"{prop.Name}: {prop.Value}");
             }
             Console.WriteLine(new string('-', 80));
