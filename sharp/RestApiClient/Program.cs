@@ -23,16 +23,12 @@ class Program
 
             List<JsonElement> itemsToDisplay = new List<JsonElement>();
 
-            // ШАГ 1: Умное определение структуры
             if (root.ValueKind == JsonValueKind.Array)
             {
-                // Если API сразу выдал список (как Университеты или Котики)
                 itemsToDisplay = root.EnumerateArray().ToList();
             }
             else if (root.ValueKind == JsonValueKind.Object)
             {
-                // Если API выдал объект (как Rick & Morty), ищем массив внутри
-                // Проверяем популярные названия полей: "results", "data", "items"
                 if (root.TryGetProperty("results", out JsonElement resultsProp))
                     itemsToDisplay = resultsProp.EnumerateArray().ToList();
                 else if (root.TryGetProperty("data", out JsonElement dataProp))
@@ -61,7 +57,6 @@ class Program
     {
         var properties = items[0].EnumerateObject().Select(p => p.Name).ToList();
 
-        // Рисуем простую таблицу (без обрезки!)
         Console.WriteLine(new string('-', 80));
         foreach (var item in items)
         {
