@@ -10,8 +10,8 @@ class Program
     static async Task Main(string[] args)
     {
         using HttpClient client = new HttpClient();
-        Console.WriteLine("=== Универсальный REST API Клиент ===");
-        Console.Write("Введите URL: ");
+        Console.WriteLine("REST API CLIENT === Succes ===");
+        Console.Write("URL: ");
         string url = Console.ReadLine();
 
         try
@@ -39,7 +39,7 @@ class Program
                     itemsToDisplay = dataProp.EnumerateArray().ToList();
                 else
                 {
-                    Console.WriteLine("Данные получены, но это одиночный объект, а не список.");
+                    Console.WriteLine("The data has been received, but it is a single object, not a list.");
                     Console.WriteLine(root.GetRawText());
                     return;
                 }
@@ -53,7 +53,7 @@ class Program
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Ошибка: {ex.Message}");
+            Console.WriteLine($"Error: {ex.Message}");
         }
     }
 
